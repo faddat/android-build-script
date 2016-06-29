@@ -8,6 +8,15 @@
 # export OUTDIR= and VARIANT= for where to copy the output zip
 # VARIANT is optional since I keep my ROM builds segregated into folders
 # script will work without it as well
+
+_repo=repo sync --force-sync -f --no-tags -c --no-clone-bundle
+if [ $SYNC ];then
+  if [ $JOBS ]; then
+    $_repo -j $JOBS
+  else
+    $_repo
+  fi
+fi
 if [ $CLEAN ]; then
   make clean fi source build/envsetup.sh if [ $BRUNCH ]; then
   if [ $LOG ]; then
